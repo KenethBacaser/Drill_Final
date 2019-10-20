@@ -1,0 +1,172 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Finals_Drill1tryagain
+{
+    class Student
+    {
+        public string studID;
+        public string surname;
+        public string firstname;
+        public string occupation;
+        public char gender;
+        public int countrycode;
+        public string number;
+        public void setNumber(string Number)
+        {
+            this.number = Number;
+        }
+        public string getNumber()
+        {
+            return number;
+        }
+        public void setCountrycode(int Countrycode)
+        {
+            this.countrycode = Countrycode;       
+        }
+        
+        public string getCountrycode() 
+        {
+            switch (countrycode)
+            {
+                case 60:
+                    return "Federation of malaysia";
+                case 62:
+                    return "Republic of Indonesia";
+                case 63:
+                    return "Republic of the Philippines";
+                case 65:
+                    return "Republic of Singapore";
+                case 66:
+                    return "Kingdom of Thailand";
+                default:
+                    break;
+            }
+            return "";
+        }
+        public void setGender(char Gender)
+        {
+            this.gender = Gender;
+        }
+
+        public string getGender()
+        {
+            if ((this.gender == 'f') || (this.gender == 'F'))
+            {
+                return "Her";
+            }
+            else if ((this.gender == 'm') || (this.gender == 'M'))
+            {
+                return "His";
+            }
+            else 
+            return "";
+        }
+   
+        public void setOccupation(string Occupation)
+        {
+            this.occupation = Occupation;
+        }
+        public string getOccupation()
+        {
+            return this.occupation;
+        }
+        public void setFirstName(string Firstname)
+        {
+            this.firstname = Firstname;
+        }
+        public string getFirstName()
+        {
+            return firstname;
+        }
+        public void setSurname(string Surname) 
+        {
+            this.surname = Surname;
+        }
+        public string getSurname()
+        {
+            return this.surname;
+        }
+        public void setStudId(string Id)
+        {
+            this.studID = Id;
+        }
+        public string GetStudId()
+        { 
+            return this.studID;
+        }
+
+    }
+    class ShowMenu
+    {
+        public void showmenu() 
+        {
+            Console.WriteLine("--------------------------------------------------------");
+            Console.WriteLine("|ASEAN Country\t\t    || \tCountry Code  \t\t|");
+            Console.WriteLine("|Federation of Malaysia \t60\t\t\t|");
+            Console.WriteLine("|Republic of Indonesia\t\t62\t\t\t|");
+            Console.WriteLine("|Republic of Philippines\t63\t\t\t|");
+            Console.WriteLine("|Republic of Singapore\t\t65\t\t\t|");
+            Console.WriteLine("|Kingdom of Thailand\t\t66\t\t\t|");
+            Console.WriteLine("--------------------------------------------------------");
+
+        }
+    }
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            char choice;
+            
+            ShowMenu showMenu = new ShowMenu();
+            Student student1 = new Student();
+            do {
+            showMenu.showmenu();
+            Console.Write("Enter Stundent Number[0000-00]: "); student1.studID = Console.ReadLine();
+            Console.Write("Enter your Surname: "); student1.surname = Console.ReadLine();
+            Console.Write("Enter First Name: "); student1.firstname = Console.ReadLine();
+            Console.Write("Enter your Occupation: "); student1.occupation = Console.ReadLine();
+            while (true)
+            {
+                Console.Write("Enter your Gender ['F' for female,'M' for Male]: ");
+                student1.gender = char.Parse(Console.ReadLine());
+                while ((student1.gender != 'M') && (student1.gender != 'm') && (student1.gender != 'f') && (student1.gender != 'F')) 
+                {
+                    Console.Write("Invalid Input!\n");
+                    break;
+                }
+                if ((student1.gender == 'm') ||  (student1.gender == 'M') ||  (student1.gender == 'f')  || (student1.gender == 'F'))
+                {
+                    break;
+                }
+            }
+            while (true)
+            {
+                Console.Write("Enter your number country code : ");
+                student1.countrycode = Convert.ToInt32(Console.ReadLine());
+                while ((student1.countrycode >= 67) || (student1.countrycode < 60) || (student1.countrycode == 61) || (student1.countrycode == 64))
+                {
+                    Console.Write("Invalid input!\n");
+                    break;
+                }
+                if ((student1.countrycode == 60) || (student1.countrycode == 62) || (student1.countrycode == 63) || (student1.countrycode == 65) || (student1.countrycode == 66))
+                {
+                    break;
+                }
+            }
+            Console.Write("Enter phone number [00-0000000]: \n"); student1.number = Console.ReadLine();
+            Console.WriteLine("{0}, {1} with Student Number:{2}, is a {3}, {4} phone number is {5} and lives in {6} \n", student1.getSurname(), student1.getFirstName(), student1.GetStudId(), student1.getOccupation(), student1.getGender()
+                ,student1.getNumber(), student1.getCountrycode());
+
+            Console.Write("Do you want to continue [Y/N]?  ");
+            choice = char.Parse(Console.ReadLine());
+                
+            }while ((choice == 'Y') || (choice == 'y'));
+           
+            Console.ReadLine();
+        }
+    }
+}
